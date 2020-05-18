@@ -1,5 +1,5 @@
 import { getRepository } from 'typeorm';
-import Tool from '../models/tool';
+import Tool from '../../models/tool';
 
 interface Request {
   title: string;

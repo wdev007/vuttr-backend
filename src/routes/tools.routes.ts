@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import CreateToolService from '../services/CreateToolService';
+import CreateToolService from '../services/tools/CreateToolService';
 
 const toolsRouter = Router();
 
