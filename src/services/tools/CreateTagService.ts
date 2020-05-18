@@ -2,17 +2,22 @@ import { getRepository } from 'typeorm';
 import Tag from '../../models/tag';
 
 interface Request {
-  name: string;
+  tags: string[];
   tool_id: string;
 }
 
 class CreateTagService {
-  public async execute({ name, tool_id }: Request): Promise<Tag> {
+  public async execute({ tags, tool_id }: Request): Promise<string[]> {
     const tagRepository = getRepository(Tag);
 
-    const tag = await tagRepository.create({ name, tool_id });
+    const createdTags = tags.map((tag) => ({
+      name: tag,
+      tool_id,
+    }));
 
-    return tag;
+    await tagRepository.save(createdTags);
+
+    return tags;
   }
 }
 
