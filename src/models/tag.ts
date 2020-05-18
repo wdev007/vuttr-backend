@@ -1,4 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import Tool from './tool';
 
 @Entity('tags')
 class Tag {
@@ -9,13 +18,17 @@ class Tag {
   name: string;
 
   @Column()
-  user_id: string;
-
-  @Column()
   tool_id: string;
 
-  // @ManyToOne()
-  // user: string;
+  @ManyToOne(() => Tool)
+  @JoinColumn({ name: 'tool_id' })
+  tool: Tool;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 }
 
 export default Tag;
