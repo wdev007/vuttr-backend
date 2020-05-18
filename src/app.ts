@@ -3,6 +3,8 @@ import 'dotenv/config';
 import express, { Application } from 'express';
 import 'express-async-errors';
 
+import handleExceptionError from './middlewares/handleExceptionError';
+
 import Routes from './routes';
 import './database';
 
@@ -21,6 +23,7 @@ class App {
 
   routes(): void {
     this.server.use(Routes);
+    this.server.use(handleExceptionError);
   }
 }
 
